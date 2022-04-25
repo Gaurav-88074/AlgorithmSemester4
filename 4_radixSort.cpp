@@ -15,8 +15,7 @@ void countSort(int * &array,int size,int exp){
     }
     int count[m+1] = {0};
     for (int i = 0; i <size; i++){
-        int index = (array[i]/exp);
-        count[index%10]+=1;
+        count[(array[i]/exp)%10]+=1;
     }
     for (int i = 1; i <(m+1); i++){
         count[i]+=count[i-1];
@@ -24,9 +23,8 @@ void countSort(int * &array,int size,int exp){
 
     int output[size];
     for (int i = size-1; i >=0; i--){
-        int index = array[i]/exp;
-        output[count[index%10]-1] = array[i];
-        count[index%10]-=1;
+        output[count[(array[i]/exp)%10]-1] = array[i];
+        count[(array[i]/exp)%10]-=1;
     }
     for (int i = 0; i < size; i++){
         array[i] = output[i];
